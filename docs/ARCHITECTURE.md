@@ -1,63 +1,46 @@
-# dlang‑school Architecture  
-###### /dev/repos/dlang-school/docs/ARCHITECTURE.md  
+# dlang-school — Architecture
+###### /dev/repos/dlang-school/docs/ARCHITECTURE.md
 
 ## Purpose
-dlang‑school is the apprenticeship ecosystem for teaching the D programming language to young engineers.  
-It provides:
 
-- a structured learning path  
-- a reference project  
-- an adventure project  
-- a versioned workflow  
-- a badge system  
-- a local RCA (Reference + Companion App)  
-- a 900‑lesson curriculum  
-- a subscription model for families  
+This document contains system design, component specifications, and subsystem contracts for the dlang-school ecosystem. For the subsystem overview, see [README.md](../README.md). For product-facing information, see [ABOUT.md](ABOUT.md). For doctrine and naming conventions, see [MY_RULES.md](MY_RULES.md).
 
-This repo contains the architecture, specifications, and doctrine that govern the entire system.
+This document will be expanded as each subsystem reaches detailed design.
 
 ---
 
-## Core Philosophy
-dlang‑school is built on apprenticeship, not lectures.
-
-The principles:
-
-- Learn by doing  
-- Reference + Adventure  
-- Small steps, no overwhelm  
-- Version everything  
-- No answer sheets  
-- Craftsmanship over speed  
-- Joy over drudgery  
-- Discipline over chaos  
-
-The system must work for:
-
-- Benny (2 hours/week with Brother Bill)  
-- 10,000 young engineers (self‑paced with RCA)  
-
----
-
-## System Components
+## Subsystem Contracts
 
 ### 1. RCA (Reference + Companion App)
-The RCA is the local application that provides:
 
-- lesson navigation  
-- md rendering  
-- badge tracking  
-- version management  
-- project hydration/dehydration  
-- parental controls  
-- daily workflow guidance  
-- reference project viewer  
-- adventure project manager  
+*Detailed design pending.*
 
-The RCA is the student’s daily companion.
+### 2. Folder Layout
+
+*Detailed design pending.*
+
+### 3. CLI Tools
+
+*Detailed design pending.*
+
+### 4. Versioning Model
+
+*Detailed design pending.*
+
+### 5. Lesson Architecture
+
+*Detailed design pending.*
+
+### 6. SQLite Schema
+
+*Detailed design pending.*
+
+### 7. Self-Guided Projects
+
+*Detailed design pending.*
 
 ---
 
-### 2. Folder Layout
-A deterministic, date‑based structure:
+## Rehydration Model
 
+*Detailed design pending.*
