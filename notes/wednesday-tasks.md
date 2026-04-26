@@ -6,17 +6,17 @@
 
 ### Hardware
 
-1. Convert Keychron Q5 MAX to silent switches, swap keycaps to DVORAK layout. Use Keychron website (VIA/QMK) to program DVORAK layout. Wired USB-C connection only — no wireless setup needed. (Keycap/switch puller ships with keyboard.)
+1. ~~Convert Keychron Q5 MAX to silent switches, swap keycaps to DVORAK layout.~~ **COMPLETE.** Keychron Q5 Max returned. Purchased Matias Dvorak Pro (FK207QPC) direct from matias.ca — DVORAK hardwired at firmware level, quiet Matias switches, wired USB-A, full-size, DVORAK+QWERTY legends, physical toggle switch. No conversion or programming needed. Benny uses his existing HP quiet wired QWERTY keyboard until the Matias arrives. HP keyboard stays as cheap backup.
 
 ### Purchases
 
-2. Purchase Typora — $15 one-time.
+2. ~~Purchase Typora — $15 one-time.~~ **COMPLETE.** Typora purchased, installed on Benny's Pop!_OS box, registered, and tested. Auto-formats markdown same as Windows.
 
 ### Software Setup (Benny's Machine — Pop!_OS)
 
-3. Verify D toolchain on Benny's machine (dmd, dub). Install via `curl -fsS https://dlang.org/install.sh | bash` or apt if available.
-4. Verify VS Code D extension on Benny's machine. Install VS Code via `.deb` package or `sudo snap install code --classic` if not already installed.
-5. Install Typora on Benny's machine: `sudo snap install typora` or via apt repo (see typora.io/#linux).
+3. ~~Verify D toolchain on Benny's machine (dmd, dub).~~ **COMPLETE.** Both dmd and dub verified installed.
+4. ~~Verify VS Code D extension on Benny's machine.~~ **COMPLETE.** VS Code 1.117.0 installed. D extension (webfreak.code-d v0.23.2) already installed.
+5. ~~Install Typora on Benny's machine.~~ **COMPLETE.** Typora installed, registered, and tested on Benny's Pop!_OS box.
 
 ### Internet Lockdown — Standard Users Only (Benny's Machine — Pop!_OS)
 
@@ -113,7 +113,7 @@
 ### Pack Staging Bag
 
 18. HDMI to DisplayPort cable in Staging "XFinity" shopping bag.
-19. Keychron Q5 MAX keyboard in staging bag. Confirm USB-C cable is packed with it. Wired connection (USB-C) — wireless keyboards cannot send keystrokes during pre-boot for BIOS/BOOT access (F7/F12).
+19. Keychron Q5 MAX keyboard and USB-C cable in staging bag — **for return, not setup.** Return on Wednesday.
 
 ---
 
@@ -136,31 +136,35 @@
 32. Click Apply.
 33. Drag a window from monitor 1 to monitor 2. Confirm it moves smoothly.
 
-### Hardware Hookup — Keychron Q5 MAX Keyboard
+### Return — Keychron Q5 MAX
 
-34. Remove Keychron Q5 MAX keyboard from staging bag.
-35. Remove USB-C cable from staging bag.
-36. Set the keyboard's connection switch (left side) to wired/USB mode.
-37. Plug the USB-C end of the cable into the keyboard.
-38. Plug the USB-A end of the cable into Benny's PC.
-39. Open a text editor (gedit or VS Code). Type a few characters. Confirm keystrokes register.
-40. Confirm DVORAK layout is active — type "hello" and verify correct output.
-41. Restart Benny's PC.
-42. During boot, repeatedly tap F7 (or F12, depending on hardware). Confirm BIOS/BOOT page appears.
-43. Exit BIOS without changes. Let Pop!_OS boot normally.
+34. Return Keychron Q5 MAX keyboard and USB-C cable.
+
+### Hardware Hookup — Matias Dvorak Pro (Deferred — When Keyboard Arrives)
+
+35. Remove Matias Dvorak Pro keyboard from packaging.
+36. Plug the USB-A cable into the keyboard.
+37. Plug the USB-A end into Benny's PC.
+38. Set the physical toggle switch to DVORAK.
+39. Open a text editor (gedit or VS Code). Type "hello" — confirm DVORAK output.
+40. Flip the toggle switch to QWERTY. Type "hello" — confirm QWERTY output.
+41. Flip back to DVORAK.
+42. Restart Benny's PC.
+43. During boot, repeatedly tap F7 (or F12, depending on hardware). Confirm BIOS/BOOT page appears — USB-A wired keyboard sends keystrokes during pre-boot.
+44. Exit BIOS without changes. Let Pop!_OS boot normally.
 
 ### Teaching
 
-44. Teach Benny how to increase font size in VS Code.
-45. Teach Brother Bill how to change stylized colors for `(` and `)` — selected, not selected, and unpaired. Brother Bill is red-green color-blind.
-46. Give Benny the Dvorak touch typing URL: https://learn.dvorak.nl/
+45. Teach Benny how to increase font size in VS Code.
+46. Teach Brother Bill how to change stylized colors for `(` and `)` — selected, not selected, and unpaired. Brother Bill is red-green color-blind.
+47. Give Benny the Dvorak touch typing URL: https://learn.dvorak.nl/
 
 ### On-Site Verification
 
-47. Post-transport verification — not full E2E (already done pre-Wednesday).
+48. Post-transport verification — not full E2E (already done pre-Wednesday).
     a. Second monitor displays and extends desktop.
-    b. Keychron Q5 MAX responds over USB-C. F7/F12 reaches BIOS/BOOT page.
-    c. DVORAK layout types correctly in VS Code.
+    b. HP quiet wired QWERTY keyboard responds. F7/F12 reaches BIOS/BOOT page. Matias Dvorak Pro verification deferred until keyboard arrives.
+    c. DVORAK layout verification deferred until Matias arrives. Benny uses HP QWERTY keyboard on Wednesday.
     d. VS Code opens, D extension loads, font size adjustment works.
     e. `create-d-project` runs and produces a valid project.
     f. Typora opens a journal file.
@@ -175,8 +179,8 @@
 
 ### Bitwarden
 
-48. Learn Bitwarden basics: vault, entries, folders, password generator.
-49. Install Bitwarden browser extension on both machines.
-50. Install Bitwarden desktop app on both machines (Windows installer for Brother Bill, `.deb`/snap for Benny's Pop!_OS).
-51. Store first few credentials in the vault — start with accounts used for dlang-school work.
-52. Practice the workflow: visit a login page → Bitwarden auto-fills → log in.
+49. Learn Bitwarden basics: vault, entries, folders, password generator.
+50. Install Bitwarden browser extension on both machines.
+51. Install Bitwarden desktop app on both machines (Windows installer for Brother Bill, `.deb`/snap for Benny's Pop!_OS).
+52. Store first few credentials in the vault — start with accounts used for dlang-school work.
+53. Practice the workflow: visit a login page → Bitwarden auto-fills → log in.

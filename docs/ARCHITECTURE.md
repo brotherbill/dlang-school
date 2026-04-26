@@ -74,6 +74,13 @@ Per-user internet lockdown. Standard users are restricted to a whitelist-only mo
 - Manual procedure documented in `notes/wednesday-tasks.md` (reference implementation).
 - When RCA ships, the `.deb` postinst script replaces the manual procedure entirely. Ongoing management through RCA's parental controls menu (2FA-protected).
 
+**Interim Implementation (Pre-RCA)**
+- Manual nftables lockdown applied directly to benny's UID (1000). Documented in `docs/benny-lockdown.md`.
+- Blocks all outbound traffic except loopback and whitelisted IPs (matias.ca). IPv4 and IPv6.
+- Persisted via `/etc/nftables.conf` and systemd service `restore-iptables.service`.
+- Architecturally different from the planned dnsmasq whitelist model — IP-based DROP rather than DNS-based filtering.
+- Will be superseded by the RCA's `.deb` postinst script when it ships.
+
 ---
 
 ## Rehydration Model
