@@ -1,5 +1,7 @@
 # MY_RULES.md  
-## dlang‑school Repository Governance Doctrine
+###### /dev/repos/dlang-school/MY_RULES.md  
+
+# dlang‑school Repository Governance Doctrine
 
 This file defines the non‑negotiable rules that govern the dlang‑school repository.  
 These rules ensure:  
@@ -249,7 +251,7 @@ Examples:
 
 ```
 Add ARCHITECTURE.md: foundation of dlang-school system
-Add MY_RULES.md: governance doctrine
+Update MY_RULES.md: governance doctrine
 Add notes/chat.md: initial ledger
 ```
 
@@ -280,6 +282,32 @@ If a change is made, it must be:
 - documented  
 - committed  
 - justified  
+
+---
+
+# 13. Markdown File Header Rules
+Every Markdown file in this repo must begin with the following three lines:
+
+**Line 1:** A level‑1 header (`#`) describing what this file is for  
+**Line 2:** A level‑6 header (`######`) containing the full absolute path using Linux‑style forward slashes  
+**Line 3:** A blank separator line
+
+Example:
+
+```
+# Overview of the dlang‑school architecture  
+###### /dev/repos/dlang-school/docs/ARCHITECTURE.md  
+
+# Architecture
+...
+```
+
+Rules:
+- Line 1 must always be a Header 1 (`#`) describing the purpose of the file.  
+- Line 2 must always be a Header 6 (`######`) containing the full absolute path using Linux‑style forward slashes.  
+- Line 3 must always be blank.  
+- No content may appear before Line 1.  
+- No exceptions.
 
 ---
 
