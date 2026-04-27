@@ -93,3 +93,10 @@
 - Updated notes/wednesday‑tasks.md step 6 with completion markers, implementation notes, and pending whitelist items (services.vnc.com, code.visualstudio.com).
 - Added dnsmasq whitelist prerequisite sub‑steps to step 8 (RealVNC) in wednesday‑tasks.md.
 
+### 2026‑04‑27 05:04 EDT — Marked Step 7 Complete and Created `~/projects` on Target Machine
+- Updated `notes/wednesday-tasks.md` to mark item 7 as COMPLETE with final path `~/projects`.
+- Rebooted Pop!_OS target machine and signed in as user `benny`.
+- Created deterministic project root via `mkdir -p ~/projects`.
+- Verified directory exists at `/home/benny/projects`.
+- Confirmed correct ownership (`benny:benny`).
+

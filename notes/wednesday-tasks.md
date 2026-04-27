@@ -54,7 +54,8 @@
     r. Confirm RealVNC connects from Brother Bill's machine. **BLOCKED** — RealVNC not set up yet (step 8).
     s. Drop a test file in outbox. Confirm email notification sends. **BLOCKED** — outbox notification not built yet (steps 9–14).
 
-7. Set up base `projects/` folder on Benny's machine — deterministic date-based layout the CLI tools expect.
+7. ~~Set up base `projects/` folder on Benny's machine — deterministic date-based layout the CLI tools expect.~~ **COMPLETE.** Created `~/projects` on the Pop!_OS target machine as user `benny`; verified directory exists and ownership is correct (`benny:benny`).
+
 
 ### RealVNC (Both Machines)
 
