@@ -58,7 +58,15 @@
 
 ### RealVNC (Both Machines)
 
-8. Install RealVNC Connect on both machines. On Benny's Pop!_OS machine: download `.deb` from realvnc.com, install via `sudo dpkg -i <package>.deb`. Create team account. Sign both machines into same account — Benny's machine appears permanently in Brother Bill's address book. No one-time codes. Persistent trusted access. File transfer via RealVNC File Transfer dialog (ClipboardFT is Windows-to-Windows only — does not apply). Set up "inbox" and "outbox" folders on Benny's machine — Brother Bill reads outbox, deposits to inbox, and deletes older files from both. Exercise end-to-end before Wednesday: remote control, text clipboard (Ctrl+C/V across machines), file transfer, inbox/outbox flow. Brother Bill connects anytime between weekly sessions to check outbox or deposit to inbox.
+8. Install RealVNC Connect on both machines.
+
+    **Prerequisite — add to dnsmasq whitelist before proceeding:**
+    a. Add `server=/services.vnc.com/8.8.8.8` to `/etc/dnsmasq.d/benny-whitelist.conf` (RealVNC connectivity).
+    b. Add `server=/code.visualstudio.com/8.8.8.8` to `/etc/dnsmasq.d/benny-whitelist.conf` (VS Code extension updates).
+    c. Restart dnsmasq: `sudo systemctl restart dnsmasq`.
+
+    **Setup:**
+    d. On Benny's Pop!_OS machine: download `.deb` from realvnc.com, install via `sudo dpkg -i <package>.deb`. Create team account. Sign both machines into same account — Benny's machine appears permanently in Brother Bill's address book. No one-time codes. Persistent trusted access. File transfer via RealVNC File Transfer dialog (ClipboardFT is Windows-to-Windows only — does not apply). Set up "inbox" and "outbox" folders on Benny's machine — Brother Bill reads outbox, deposits to inbox, and deletes older files from both. Exercise end-to-end before Wednesday: remote control, text clipboard (Ctrl+C/V across machines), file transfer, inbox/outbox flow. Brother Bill connects anytime between weekly sessions to check outbox or deposit to inbox.
 
 ### Outbox Email Notification (Benny's Machine — Pop!_OS)
 

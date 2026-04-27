@@ -80,3 +80,16 @@
 - Updated docs/benny‑lockdown.md with full DNS filtering architecture, persistence, verification, and troubleshooting.
 - Updated notes/wednesday‑tasks.md step 6 with completion markers, implementation notes, and pending whitelist items (services.vnc.com, code.visualstudio.com).
 
+### 2026‑04‑26 20:07 EDT — DNS‑Based Lockdown (dnsmasq + iptables NAT)
+- Replaced IP‑based nftables whitelist with domain‑based DNS filtering using dnsmasq on port 5353.
+- Configured /etc/dnsmasq.d/benny‑whitelist.conf — `address=/#/` returns NXDOMAIN for all non‑whitelisted domains, `no‑resolv` with upstream 8.8.8.8 and 8.8.4.4.
+- Whitelisted learn.dvorak.nl, dlang.org, dlang.school via `server=/domain/8.8.8.8` directives.
+- Created iptables NAT OUTPUT rules to redirect benny's DNS (UDP and TCP port 53) to port 5353.
+- Diagnosed nsswitch.conf bypass — Pop!_OS default `hosts` line includes `mdns4_minimal [NOTFOUND=return]`, which short‑circuits DNS before dnsmasq can return NXDOMAIN. Fixed to `hosts: files dns`.
+- Created /etc/systemd/system/iptables‑restore.service to persist NAT rules via `/sbin/iptables‑restore /etc/iptables/rules.v4` at boot. Enabled with systemctl.
+- Saved iptables NAT rules to /etc/iptables/rules.v4.
+- Verified lockdown: admin gets 301 from Google, benny gets NXDOMAIN. benny reaches learn.dvorak.nl (200) and dlang.org (200).
+- Updated docs/benny‑lockdown.md with full DNS filtering architecture, persistence, verification, and troubleshooting.
+- Updated notes/wednesday‑tasks.md step 6 with completion markers, implementation notes, and pending whitelist items (services.vnc.com, code.visualstudio.com).
+- Added dnsmasq whitelist prerequisite sub‑steps to step 8 (RealVNC) in wednesday‑tasks.md.
+
