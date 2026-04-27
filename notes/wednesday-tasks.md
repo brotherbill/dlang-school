@@ -23,49 +23,36 @@
 6. Lock down internet access for standard users — whitelist-only model. Admin account stays unrestricted.
 
     **Layer 1 — Limited User Account**
-    a. Create a limited (non-sudo) user account for Benny. Brother Bill retains the admin account.
-    b. Benny cannot install software, change DNS, or modify firewall rules.
+    a. ~~Create a limited (non-sudo) user account for Benny. Brother Bill retains the admin account.~~ **COMPLETE.**
+    b. ~~Benny cannot install software, change DNS, or modify firewall rules.~~ **COMPLETE.** Non-sudo account confirmed.
 
     **Layer 2 — Restricted DNS Resolver (dnsmasq on port 5353)**
-    c. Install dnsmasq: `sudo apt install dnsmasq`.
-    d. Configure dnsmasq to listen on port 5353 (non-standard — system DNS stays untouched for admin):
-        In `/etc/dnsmasq.conf`:
-        ```
-        port=5353
-        listen-address=127.0.0.1
-        address=/#/127.0.0.1
-        ```
-    e. Whitelist approved domains by forwarding them to a real DNS server:
-        ```
-        server=/services.vnc.com/8.8.8.8
-        server=/dlang.org/8.8.8.8
-        server=/code.visualstudio.com/8.8.8.8
-        server=/learn.dvorak.nl/8.8.8.8
-        ```
-    f. Whitelist the SMTP server used by msmtp for outbox email notifications (e.g., `server=/smtp.gmail.com/8.8.8.8`).
+    c. ~~Install dnsmasq: `sudo apt install dnsmasq`.~~ **COMPLETE.**
+    d. ~~Configure dnsmasq to listen on port 5353 (non-standard — system DNS stays untouched for admin).~~ **COMPLETE.** Config lives in `/etc/dnsmasq.d/benny-whitelist.conf` (not `/etc/dnsmasq.conf`). Uses `address=/#/` to return NXDOMAIN for non-whitelisted domains. `no-resolv` with upstream `server=8.8.8.8` and `server=8.8.4.4`.
+    e. ~~Whitelist approved domains by forwarding them to a real DNS server.~~ **PARTIAL.** Current whitelist: `learn.dvorak.nl`, `dlang.org`, `dlang.school`. **Still pending:** `services.vnc.com` (add when setting up RealVNC, step 8) and `code.visualstudio.com` (add before Wednesday session for VS Code extension updates).
+    f. Whitelist the SMTP server used by msmtp for outbox email notifications (e.g., `server=/smtp.gmail.com/8.8.8.8`). **BLOCKED** — msmtp not configured yet (steps 10–11).
     g. Add more whitelisted domains as needed — this is the living whitelist.
-    h. Restart dnsmasq: `sudo systemctl restart dnsmasq`.
+    h. ~~Restart dnsmasq: `sudo systemctl restart dnsmasq`.~~ **COMPLETE.**
 
     **Layer 3 — Per-User DNS Redirect (iptables --uid-owner)**
-    i. Get Benny's UID: `BENNY_UID=$(id -u benny)`.
-    j. Redirect all of Benny's DNS queries to the restricted resolver — any DNS server Benny's apps try to reach gets silently rerouted to the whitelist-only dnsmasq:
-        ```
-        sudo iptables -t nat -A OUTPUT -m owner --uid-owner $BENNY_UID -p udp --dport 53 -j REDIRECT --to-ports 5353
-        sudo iptables -t nat -A OUTPUT -m owner --uid-owner $BENNY_UID -p tcp --dport 53 -j REDIRECT --to-ports 5353
-        ```
-    k. Admin's DNS is untouched — goes to the system's normal DNS server. Full internet access.
+    i. ~~Get Benny's UID: `BENNY_UID=$(id -u benny)`.~~ **COMPLETE.**
+    j. ~~Redirect all of Benny's DNS queries to the restricted resolver.~~ **COMPLETE.** Both UDP and TCP port 53 redirected to 5353 via iptables NAT OUTPUT chain.
+    k. ~~Admin's DNS is untouched — goes to the system's normal DNS server. Full internet access.~~ **COMPLETE.**
 
     **Layer 4 — Persist iptables Rules Across Reboots**
-    l. Install iptables-persistent: `sudo apt install iptables-persistent`.
-    m. Save rules: `sudo netfilter-persistent save`.
-    n. Rules survive reboots automatically.
+    l. ~~Install iptables-persistent: `sudo apt install iptables-persistent`.~~ **COMPLETE (different approach).** Created custom systemd service `/etc/systemd/system/iptables-restore.service` using `/sbin/iptables-restore /etc/iptables/rules.v4` instead of `iptables-persistent` package.
+    m. ~~Save rules.~~ **COMPLETE.** `sudo sh -c 'iptables-save > /etc/iptables/rules.v4'`.
+    n. ~~Rules survive reboots automatically.~~ **COMPLETE.** Service enabled via `systemctl enable iptables-restore.service`.
+
+    **Layer 3.5 — nsswitch.conf Fix (Not in Original Plan)**
+    Added during implementation. Pop!_OS default `hosts` line in `/etc/nsswitch.conf` includes `mdns4_minimal [NOTFOUND=return]`, which short-circuits DNS before dnsmasq can return NXDOMAIN — bypassing the block entirely. Fixed to `hosts: files dns`. See `docs/benny-lockdown.md` for full details.
 
     **Verification**
-    o. Log in as admin. Browse freely — youtube.com, anything. Confirm unrestricted.
-    p. Log in as Benny. Try a non-whitelisted site (e.g., youtube.com). Confirm it fails.
-    q. Visit a whitelisted site (e.g., learn.dvorak.nl). Confirm it loads.
-    r. Confirm RealVNC connects from Brother Bill's machine.
-    s. Drop a test file in outbox. Confirm email notification sends.
+    o. ~~Log in as admin. Browse freely — youtube.com, anything. Confirm unrestricted.~~ **COMPLETE.** Admin curl to google.com returns 301.
+    p. ~~Log in as Benny. Try a non-whitelisted site (e.g., youtube.com). Confirm it fails.~~ **COMPLETE.** Benny curl to google.com returns nothing (NXDOMAIN).
+    q. ~~Visit a whitelisted site (e.g., learn.dvorak.nl). Confirm it loads.~~ **COMPLETE.** Benny curl to learn.dvorak.nl returns 200. dlang.org returns 200.
+    r. Confirm RealVNC connects from Brother Bill's machine. **BLOCKED** — RealVNC not set up yet (step 8).
+    s. Drop a test file in outbox. Confirm email notification sends. **BLOCKED** — outbox notification not built yet (steps 9–14).
 
 7. Set up base `projects/` folder on Benny's machine — deterministic date-based layout the CLI tools expect.
 
